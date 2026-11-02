@@ -1,4 +1,4 @@
-import reactAtomImg from './assets/react-core-concepts.png'
+import reactAtomImg from '../assets/react-core-concepts.png'
 
 const reactDescriptions = ["Fundamental", "Crucial", "Core"];
 
