@@ -1,5 +1,8 @@
 import reactCoreConceptsImg from "./assets/react-core-concepts.png";
 import { CORE_CONCEPTS } from "./data"
+import CoreConcept from './components/CoreConcept'
+import TabButton from './components/TabButton'
+import { useState } from 'react'
 
 const titles = ["Fundamentals", "Crucial", "Core"];
 
@@ -20,36 +23,28 @@ function Header() {
   );
 }
 
-function CoreConceptCard({ image, title, description }) {
-  return (
-    <div className="concept-card">
-      <img src={image} />
-      <h3>{title}</h3>
-      <p>{description}</p>
-    </div>
-  )
-}
-
-function CoreConcept({ data }) {
-  return (
-    <section id="core-concepts">
-      <h2>Core Concepts</h2>
-      <ul className="core-concept-div">
-        {data.map(dataEntry => (
-          <li>{CoreConceptCard(dataEntry)}</li>
-        ))}
-      </ul>
-    </section>
-  )
-}
-
 function App() {
+  const [selectedTopic, setSelectedTopic] = useState("Select a topic");
+  function onSelect(value) {
+    setSelectedTopic(value);
+  }
+
   return (
     <div>
       <Header />
       <main>
         <h2>Lets Get Started!</h2>
         <CoreConcept data={CORE_CONCEPTS} />
+        <section id="examples">
+          <h2>Examples</h2>
+          <menu>
+            <TabButton handleClick={() => onSelect("Components")}>Components</TabButton>
+            <TabButton handleClick={() => onSelect("JSX")}>JSX</TabButton>
+            <TabButton handleClick={() => onSelect("Props")}>Props</TabButton>
+            <TabButton handleClick={() => onSelect("State")}>State</TabButton>
+            {selectedTopic}
+          </menu>
+        </section>
       </main>
     </div>
   );
